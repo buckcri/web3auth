@@ -18,6 +18,8 @@ Technically, this is made with:
 4. The backend validates the signature and checks for matching nonce / signing address and challenged address. On success, a JWS for the address is returned
 5. The client receives the JWS. In this PoC, the payload is simply presented to the user
 
+![Authentication flow diagram](docs/web3auth-flow.drawio.svg)
+
 ## How to run
 Start the main function in `Web3authApplication` to run the backend, then navigate to http://localhost:8080 to start the authentication flow. You must have a Web3 wallet installed in your browser, for example [MetaMask](https://metamask.io/).
 
@@ -28,7 +30,7 @@ This is a PoC, not a production ready system. Keep the following deployment deta
 * A simple Map instance is used in the backend to store the nonces, so the application should not be run with multiple instances. In production, a distributed k/v store must be used
 * Also, there are no timeouts for the challenge. This is not a real security weakness, but should be used in production
 * The challenge is not signed by the backend. This should not be a security weakness, too, because the challenge is associated with its address in the backend. Also, you should only communicate using https in production anyway, so there is no need for signing the client-server flow
-* The keypair used to sign the JWS is re-generated at each server start. Use a central keystore in production. (Note: There is a fixed keypair used for unit tests)
+* The keypair used to sign the JWS is regenerated at each server start. Use a central keystore in production. (Note: There is a fixed keypair used for unit tests)
 * It would be advisable to rate limit the response endpoint to avoid a possible (albeit very theoretical) DOS attack vector
 
 ## Implementation Details
