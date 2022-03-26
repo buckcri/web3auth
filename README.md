@@ -19,6 +19,10 @@ Technically, this is made with:
 5. The client receives the JWS. In this PoC, the payload is simply presented to the user
 
 ![Authentication flow diagram](docs/web3auth-flow.drawio.svg)
+1. ![Connect](docs/01_connect.png)
+2. ![Connect](docs/02_begin.png)
+3. ![Connect](docs/03_sign.png)
+5. ![Connect](docs/04_authenticated.png)
 
 ## How to run
 Start the main function in `Web3authApplication` to run the backend, then navigate to http://localhost:8080 to start the authentication flow. You must have a Web3 wallet installed in your browser, for example [MetaMask](https://metamask.io/).
