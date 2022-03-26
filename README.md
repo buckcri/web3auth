@@ -1,8 +1,7 @@
 # Web3auth Demo
 
 ## About
-This is a proof-of-concept implementation for a client-server authentication flow leveraging cryptographic functions of a Web3 wallet in the browser to authenticate a client, i.e.
-no user-password database is necessary. The client is authenticated by their wallet public key/address.
+This is a proof-of-concept implementation for a client-server authentication flow leveraging cryptographic functions of a Web3 wallet in the browser to authenticate a client, enabling user identification without any user database. The client is authenticated by their wallet public key/address.
 
 See below for a more detailed flow documentation.
 
@@ -31,7 +30,7 @@ Start the main function in `Web3authApplication` to run the backend, then naviga
 This is a PoC, not a production ready system. Keep the following deployment details in mind:
 
 * A simple Map instance is used in the backend to store the nonces, so the application should not be run with multiple instances. In production, a distributed k/v store must be used
-* Also, there are no timeouts for the challenge. This is not a real security weakness, but should be used in production
+* Also, there are no timeouts for the challenge. This is not a real security weakness, but timeouts should be used in production
 * The challenge is not signed by the backend. This should not be a security weakness, too, because the challenge is associated with its address in the backend. Also, you should only communicate using https in production anyway, so there is no need for signing the client-server flow
 * The keypair used to sign the JWS is regenerated at each server start. Use a central keystore in production. (Note: There is a fixed keypair used for unit tests)
 * It would be advisable to rate limit the response endpoint to avoid a possible (albeit very theoretical) DOS attack vector
