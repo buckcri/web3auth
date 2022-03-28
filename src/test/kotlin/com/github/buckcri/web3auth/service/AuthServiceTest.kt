@@ -1,48 +1,36 @@
 package com.github.buckcri.web3auth.service
 
 import com.github.buckcri.web3auth.model.ResponseModel
-import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.io.Decoders
-import org.junit.Before
+import com.nimbusds.jose.JWSVerifier
+import com.nimbusds.jose.crypto.ECDSAVerifier
+import com.nimbusds.jose.jwk.JWKSet
+import com.nimbusds.jwt.SignedJWT
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.boot.context.properties.ConstructorBinding
-import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
-import java.security.KeyFactory
-import java.security.KeyPair
-import java.security.PrivateKey
-import java.security.PublicKey
-import java.security.spec.PKCS8EncodedKeySpec
-import java.security.spec.X509EncodedKeySpec
+import java.io.File
 import java.util.*
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
-
-@ConstructorBinding
-@ConfigurationProperties
-data class TestKeyPairConfiguration(val testPrivKey: String, val testPubKey: String)
+import kotlin.test.assertTrue
 
 /**
- * This class is testing #AuthService using a fixed ES512 test keypair read from application configuration.
+ * This class is testing #AuthService using a fixed ES256 test keypair read from application configuration.
+ * The fixed keypair is not necessary for the tests to work (they will succeed even with a random keypair), but is used to provide a true repeatable test environment.
  */
 @SpringBootTest
-@EnableConfigurationProperties(TestKeyPairConfiguration::class)
-class AuthServiceTest(@Autowired val authService: AuthService, @Autowired val testKeyPairConfigration: TestKeyPairConfiguration) {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class AuthServiceTest(@Autowired val authService: AuthService) {
 
 	/**
-	 * Set keypair used in #Jws to fixed test keypair read from configuration
+	 * Set keypair used in #Jwt to fixed test keypair read from configuration
 	 */
-	@Before
+	@BeforeAll
 	fun setTestKeypair() {
-		val encodedPublicKeyBytes = Decoders.BASE64.decode(testKeyPairConfigration.testPubKey)
-		val encodedPrivateKeyBytes = Decoders.BASE64.decode(testKeyPairConfigration.testPrivKey)
-		val keyFactory: KeyFactory = KeyFactory.getInstance("EC")
-		val publicKey: PublicKey = keyFactory.generatePublic(X509EncodedKeySpec(encodedPublicKeyBytes))
-		val privateKey: PrivateKey = keyFactory.generatePrivate(PKCS8EncodedKeySpec(encodedPrivateKeyBytes))
-
-		Jws.keyPair = KeyPair(publicKey, privateKey)
+		val jkws = JWKSet.load(File(Thread.currentThread().contextClassLoader.getResource("testKeyPair.jwks").file))
+		Jwt.keyPair = jkws.keys[0].toECKey()
 	}
 
 	companion object {
@@ -50,7 +38,7 @@ class AuthServiceTest(@Autowired val authService: AuthService, @Autowired val te
 		private const val TEST_ADDRESS = "0xab5783935e2b9c8f3e3ee0751a60693bb7451b76"
 		private const val TEST_NONCE = "f70ebe3e-e55b-4766-bd00-34078b9e5721"
 		/** sha3 of TEST_NONCE. Not used here, but given for completeness of test data. */
-		private const val TEST_MESSAGE = "0xc582fc7819e8c7dca92b7bd5befc0ec414518aa90fadff75eded7a5b55f8dadb"
+		//private const val TEST_MESSAGE = "0xc582fc7819e8c7dca92b7bd5befc0ec414518aa90fadff75eded7a5b55f8dadb"
 		/** Signature for TEST_MESSAGE and TEST_ADDRESS */
 		private const val TEST_SIGNED_MESSAGE = "0x873e6d413d9f4819a28193b34ba5e914d805caab84a623e92d43837c2af63b732a1b37d9ae70700d5899ae0fe67be59bb55d933805ff30962f0c4e37ff6ebb2d1b"
 	}
@@ -72,16 +60,23 @@ class AuthServiceTest(@Autowired val authService: AuthService, @Autowired val te
 		// replace the random nonce with a fixed test nonce.
 		authService.challenges[TEST_ADDRESS] = UUID.fromString(TEST_NONCE)
 
-		val jws = authService.challengeResponse(
+		val jwt = authService.challengeResponse(
 			ResponseModel(
 				TEST_SIGNED_MESSAGE,
 				challenge.challengedAccount
 			)
 		)
+		val signedJWT = SignedJWT.parse(jwt)
 
-		val subject = Jwts.parserBuilder().setSigningKey(Jws.keyPair.public).build().parseClaimsJws(jws).body.subject
+		// Check for valid signature
+		val verifier: JWSVerifier = ECDSAVerifier(Jwt.keyPair.toPublicJWK())
+		assertTrue(signedJWT.verify(verifier))
 
-		assertEquals(TEST_ADDRESS, subject)
+		// Check for correctly set key id
+		assertEquals("42", signedJWT.header.keyID)
+
+		// Check for correctly set subject
+		assertEquals(TEST_ADDRESS, signedJWT.jwtClaimsSet.subject)
 	}
 
 

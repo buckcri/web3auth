@@ -41,7 +41,7 @@ class AuthService {
         // Nonce is no longer valid after use. Remove to prevent replay attacks.
         challenges.remove(response.challengedAccount)
 
-        return Jws().buildJWS(recoveredAddress)
+        return Jwt().buildJWT(recoveredAddress)
     }
 
     /**

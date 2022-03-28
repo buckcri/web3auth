@@ -32,7 +32,7 @@ import javax.validation.Valid
         contact = Contact(url = "https://github.com/buckcri", name = "Christian Buck", email = "buckcri@protonmail.com")
     )
 )
-@Tag(name = "Web3Auth API", description = "This API can be used to authenticate users with a Web3 wallet. The client requests a challenge for its EVM address and receives a nonce to be signed with the Web3 wallet. The signed sha3 hash of the nonce is then sent back to be validated. Upon successful validation, a JWS for the challenged address is returned.")
+@Tag(name = "Web3Auth API", description = "This API can be used to authenticate users with a Web3 wallet. The client requests a challenge for its EVM address and receives a nonce to be signed with the Web3 wallet. The signed sha3 hash of the nonce is then sent back to be validated. Upon successful validation, a JWT for the challenged address is returned.")
 @RestController
 class AuthController(@Autowired val authService: AuthService) {
 
@@ -54,11 +54,11 @@ class AuthController(@Autowired val authService: AuthService) {
         return request
     }
 
-    @Operation(summary = "Submit signed signed sha3 hash of the nonce in the challenge to finish authentication. On successful validation, a JWS for the challenged account is returned.")
+    @Operation(summary = "Submit signed signed sha3 hash of the nonce in the challenge to finish authentication. On successful validation, a JWT for the challenged account is returned.")
     @ApiResponses(value = [
         ApiResponse(responseCode = "200", description = "Successfully authenticated", content = [
             (Content(mediaType = "application/json", array = (
-                    ArraySchema(schema = Schema(implementation = String::class, description = "JWS in compact serialization format")))))]),
+                    ArraySchema(schema = Schema(implementation = String::class, description = "JWT in compact serialization format")))))]),
         ApiResponse(responseCode = "400", description = "Bad request", content = [Content()])]
     )
     @PostMapping(path = ["response"], produces = [MediaType.APPLICATION_JSON_VALUE])
