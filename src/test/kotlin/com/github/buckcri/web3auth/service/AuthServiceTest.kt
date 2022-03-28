@@ -5,8 +5,9 @@ import com.nimbusds.jose.JWSVerifier
 import com.nimbusds.jose.crypto.ECDSAVerifier
 import com.nimbusds.jose.jwk.JWKSet
 import com.nimbusds.jwt.SignedJWT
-import org.junit.Before
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.io.File
@@ -20,12 +21,13 @@ import kotlin.test.assertTrue
  * The fixed keypair is not necessary for the tests to work (they will succeed even with a random keypair), but is used to provide a true repeatable test environment.
  */
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class AuthServiceTest(@Autowired val authService: AuthService) {
 
 	/**
 	 * Set keypair used in #Jwt to fixed test keypair read from configuration
 	 */
-	@Before
+	@BeforeAll
 	fun setTestKeypair() {
 		val jkws = JWKSet.load(File(Thread.currentThread().contextClassLoader.getResource("testKeyPair.jwks").file))
 		Jwt.keyPair = jkws.keys[0].toECKey()
@@ -71,7 +73,7 @@ class AuthServiceTest(@Autowired val authService: AuthService) {
 		assertTrue(signedJWT.verify(verifier))
 
 		// Check for correctly set key id
-		assertEquals(Jwt.keyPair.keyID, signedJWT.header.keyID)
+		assertEquals("42", signedJWT.header.keyID)
 
 		// Check for correctly set subject
 		assertEquals(TEST_ADDRESS, signedJWT.jwtClaimsSet.subject)

@@ -33,6 +33,7 @@ This is a PoC, not a production ready system. Keep the following deployment deta
 * Also, there are no timeouts for the challenge. This is not a real security weakness, but timeouts should be used in production
 * The challenge is not signed by the backend. This should not be a security weakness, too, because the challenge is associated with its address in the backend. Also, you should only communicate using https in production anyway, so there is no need for signing the client-server flow
 * The keypair used to sign the JWT is regenerated at each server start. Use a central keystore in production. (Note: There is a fixed keypair used for unit tests)
+  * A JWKS containing the public key used for signing the JWT is available at http://localhost:8080/.well-known/jwks.json 
 * It would be advisable to rate limit the response endpoint to avoid a possible (albeit very theoretical) DOS attack vector
 
 ## Implementation Details
