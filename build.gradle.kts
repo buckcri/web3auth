@@ -29,9 +29,7 @@ dependencies {
 	implementation("org.web3j:core:4.9.0")
 	implementation("org.web3j:crypto:4.9.0")
 
-	implementation("io.jsonwebtoken:jjwt-api:0.11.2")
-	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
-	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.2")
+	implementation("com.nimbusds:nimbus-jose-jwt:9.21")
 
 	implementation("org.springdoc:springdoc-openapi-ui:1.6.6")
 	implementation("org.springdoc:springdoc-openapi-kotlin:1.6.6")

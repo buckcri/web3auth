@@ -8,8 +8,8 @@ const e = React.createElement;
  * At first, the user must allow connecting to their Web3 wallet.
  * Then, the user may start the auth flow by clicking the respective button. A request for a challenge is sent to the backend.
  * Upon reception of the challenge, the user is prompted to sign the challenge with their wallet.
- * After signing, the signature is sent to backend. If signature validation is successful, a JWS is received.
- * Finally, the payload of the JWS is displayed and the auth flow finishes.
+ * After signing, the signature is sent to backend. If signature validation is successful, a JWT is received.
+ * Finally, the payload of the JWT is displayed and the auth flow finishes.
  */
 class Web3Auth extends React.Component {
   constructor(props) {
@@ -111,7 +111,7 @@ class Web3Auth extends React.Component {
       return <div className="mt-2">No wallet found.</div>;
     }
 
-    // This is the end state after a successful challenge-response flow. Simply display the payload of the received JWS.
+    // This is the end state after a successful challenge-response flow. Simply display the payload of the received JWT.
     if (this.state.token != null) {
       return (
         <div>
