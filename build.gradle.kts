@@ -4,8 +4,8 @@ plugins {
 	id("org.springframework.boot") version "2.6.6"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	kotlin("jvm") version "1.6.21"
-	kotlin("plugin.spring") version "1.6.10"
-	kotlin("plugin.serialization") version "1.6.21"
+	kotlin("plugin.spring") version "1.6.21"
+	kotlin("plugin.serialization") version "1.6.10"
 }
 
 group = "com.github.buckcri.web3auth"
@@ -38,7 +38,7 @@ dependencies {
 	implementation("org.zalando:problem-spring-web-starter:0.28.0-RC.0")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.6.21")
+	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.6.10")
 }
 
 tasks.withType<KotlinCompile> {
