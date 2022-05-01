@@ -31,7 +31,7 @@ dependencies {
 
 	implementation("com.nimbusds:nimbus-jose-jwt:9.21")
 
-	implementation("org.springdoc:springdoc-openapi-ui:1.6.6")
+	implementation("org.springdoc:springdoc-openapi-ui:1.6.8")
 	implementation("org.springdoc:springdoc-openapi-kotlin:1.6.6")
 	implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.8")
 
