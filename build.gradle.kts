@@ -12,6 +12,8 @@ group = "com.github.buckcri.web3auth"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
+val springdocOpenapiVersion by extra { "1.6.9" }
+
 repositories {
 	mavenCentral()
 }
@@ -31,9 +33,9 @@ dependencies {
 
 	implementation("com.nimbusds:nimbus-jose-jwt:9.23")
 
-	implementation("org.springdoc:springdoc-openapi-ui:1.6.8")
-	implementation("org.springdoc:springdoc-openapi-kotlin:1.6.8")
-	implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.8")
+	implementation("org.springdoc:springdoc-openapi-ui:$springdocOpenapiVersion")
+	implementation("org.springdoc:springdoc-openapi-kotlin:$springdocOpenapiVersion")
+	implementation("org.springdoc:springdoc-openapi-webmvc-core:$springdocOpenapiVersion")
 
 	implementation("org.zalando:problem-spring-web-starter:0.28.0-RC.0")
 
