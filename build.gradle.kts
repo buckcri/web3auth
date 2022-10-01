@@ -5,7 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.13.RELEASE"
 	kotlin("jvm") version "1.7.10"
 	kotlin("plugin.spring") version "1.7.10"
-	kotlin("plugin.serialization") version "1.7.10"
+	kotlin("plugin.serialization") version "1.7.20"
 }
 
 group = "com.github.buckcri.web3auth"
