@@ -40,7 +40,7 @@ dependencies {
 	implementation("org.zalando:problem-spring-web-starter:0.28.0-RC.0")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.7.20")
+	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.7.22")
 }
 
 tasks.withType<KotlinCompile> {
