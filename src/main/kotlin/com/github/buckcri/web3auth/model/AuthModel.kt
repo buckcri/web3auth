@@ -2,7 +2,7 @@ package com.github.buckcri.web3auth.model
 
 import io.swagger.v3.oas.annotations.media.Schema
 import kotlinx.serialization.Serializable
-import javax.validation.constraints.Pattern
+import jakarta.validation.constraints.Pattern
 
 /** Regex to validate EIP-55 addresses with */
 internal const val ACCOUNT_REGEXP = "0x[a-fA-F0-9]{40}"

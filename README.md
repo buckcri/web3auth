@@ -40,7 +40,6 @@ This is a PoC, not a production ready system. Keep the following deployment deta
 
 ### Backend
 * The address data type is validated in the boundary only, and stringly typed in the domain services. This is fine, because that way no invalid addresses can occur in the domain services at all
-* The backend uses [Zalando Problem](https://github.com/zalando/problem) for reporting errors as `application/problem+json`
 
 ### Frontend
 * The frontend does not validate the JWT

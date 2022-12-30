@@ -1,18 +1,16 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.7.5"
+	id("org.springframework.boot") version "3.0.1"
 	id("io.spring.dependency-management") version "1.1.0"
-	kotlin("jvm") version "1.7.22"
-	kotlin("plugin.spring") version "1.7.22"
-	kotlin("plugin.serialization") version "1.7.22"
+	kotlin("jvm") version "1.8.0"
+	kotlin("plugin.spring") version "1.8.0"
+	kotlin("plugin.serialization") version "1.8.0"
 }
 
 group = "com.github.buckcri.web3auth"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
-
-val springdocOpenapiVersion by extra { "1.6.9" }
 
 repositories {
 	mavenCentral()
@@ -25,22 +23,18 @@ dependencies {
 
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
 	implementation("org.web3j:core:4.9.0")
 	implementation("org.web3j:crypto:4.9.0")
 
-	implementation("com.nimbusds:nimbus-jose-jwt:9.25.6")
+	implementation("com.nimbusds:nimbus-jose-jwt:9.26")
 
-	implementation("org.springdoc:springdoc-openapi-ui:$springdocOpenapiVersion")
-	implementation("org.springdoc:springdoc-openapi-kotlin:$springdocOpenapiVersion")
-	implementation("org.springdoc:springdoc-openapi-webmvc-core:$springdocOpenapiVersion")
-
-	implementation("org.zalando:problem-spring-web-starter:0.28.0-RC.0")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.7.22")
+	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.8.0")
 }
 
 tasks.withType<KotlinCompile> {

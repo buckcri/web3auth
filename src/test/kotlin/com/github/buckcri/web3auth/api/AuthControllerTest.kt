@@ -50,8 +50,6 @@ class AuthControllerTest(@Autowired val mockMvc: MockMvc) {
             accept = MediaType.APPLICATION_JSON
         }.andExpect {
             status { isBadRequest() }
-            content { contentType(MediaType.APPLICATION_PROBLEM_JSON)}
-            jsonPath("$.title") { value("Constraint Violation") }
         }.andDo { print() }
     }
 
@@ -64,12 +62,17 @@ class AuthControllerTest(@Autowired val mockMvc: MockMvc) {
     fun testChallengeResponseBadRequest() {
         mockMvc.post("/response") {
             contentType = MediaType.APPLICATION_JSON
-            content = Json.encodeToString(ResponseModel.serializer(), ResponseModel("0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000"))
+            content = Json.encodeToString(
+                ResponseModel.serializer(),
+                ResponseModel(
+                    "0x0000000000000000000000000000000000000000",
+                    "0x0000000000000000000000000000000000000000"
+                )
+            )
             accept = MediaType.APPLICATION_JSON
         }.andExpect {
-            status { isInternalServerError() }
-            content { contentType(MediaType.APPLICATION_PROBLEM_JSON)}
-            jsonPath("$.detail") { value("Wrong account in response") }
+            status { isBadRequest() }
+            content { string("Wrong account in response") }
         }.andDo { print() }
     }
 }
