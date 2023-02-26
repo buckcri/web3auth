@@ -16,7 +16,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-        languages: java, javascript
+          languages: java, javascript
       - uses: gradle/gradle-build-action@v2
         with:
           gradle-version: current
