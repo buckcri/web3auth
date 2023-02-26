@@ -1,11 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "3.0.2"
+	id("org.springframework.boot") version "3.0.3"
 	id("io.spring.dependency-management") version "1.1.0"
-	kotlin("jvm") version "1.8.0"
-	kotlin("plugin.spring") version "1.8.0"
-	kotlin("plugin.serialization") version "1.8.0"
+	kotlin("jvm") version "1.8.10"
+	kotlin("plugin.spring") version "1.8.10"
+	kotlin("plugin.serialization") version "1.8.10"
 }
 
 group = "com.github.buckcri.web3auth"
@@ -24,7 +24,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
-	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
 	implementation("org.web3j:core:4.9.0")
 	implementation("org.web3j:crypto:4.9.0")
