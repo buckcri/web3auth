@@ -3,9 +3,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	id("org.springframework.boot") version "3.1.0"
 	id("io.spring.dependency-management") version "1.1.0"
-	kotlin("jvm") version "1.8.21"
-	kotlin("plugin.spring") version "1.8.21"
-	kotlin("plugin.serialization") version "1.8.21"
+	kotlin("jvm") version "1.8.22"
+	kotlin("plugin.spring") version "1.8.22"
+	kotlin("plugin.serialization") version "1.8.22"
 }
 
 group = "com.github.buckcri.web3auth"
@@ -36,7 +36,7 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.8.21")
+	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.8.22")
 }
 
 tasks.withType<KotlinCompile> {
