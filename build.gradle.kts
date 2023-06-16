@@ -17,6 +17,8 @@ repositories {
 }
 
 dependencies {
+	implementation("io.github.buckcri.xclacks:xclacks:1.0.0")
+
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
