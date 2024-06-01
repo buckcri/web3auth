@@ -31,7 +31,7 @@ dependencies {
 	implementation("org.web3j:core:4.9.0")
 	implementation("org.web3j:crypto:4.9.0")
 
-	implementation("com.nimbusds:nimbus-jose-jwt:9.37.3")
+	implementation("com.nimbusds:nimbus-jose-jwt:9.39.3")
 
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
 
