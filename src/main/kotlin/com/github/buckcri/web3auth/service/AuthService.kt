@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service
 import org.web3j.crypto.Hash
 import org.web3j.crypto.Keys
 import org.web3j.crypto.Sign
+import org.web3j.crypto.Sign.SignatureData
 import org.web3j.utils.Numeric
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
+
 
 @Service
 class AuthService {
@@ -52,10 +54,9 @@ class AuthService {
     fun recoverAddressFromNonceSignature(nonce: String, signature: String): String {
         assert(signature.startsWith("0x"))
 
-        val hex = HexFormat.of().formatHex(nonce.toByteArray())
-        val messageHashed = Hash.sha3(hex)
+        val nonceHashed = Hash.sha3String(nonce)
 
-        val messageHashBytes = Numeric.hexStringToByteArray(messageHashed)
+        val messageHashBytes = Numeric.hexStringToByteArray(nonceHashed)
         // Indexes assume signature string prefixed with "0x"
         val r = signature.substring(0, 66)
         val s = signature.substring(66, 130)
@@ -65,10 +66,10 @@ class AuthService {
 
         System.arraycopy(messageHashBytes, 0, msgBytes, 0, messageHashBytes.size)
 
-        // eth_sign does not prefix message with "\u0019Ethereum Signed Message:\n32". Recover from arbitrary hash:
-        val pubKey = Sign.signedMessageHashToKey(
+        // personal_sign does prefix message with "\u0019Ethereum Signed Message:\n" + message length:
+        val pubKey = Sign.signedPrefixedMessageToKey(
             msgBytes,
-            Sign.SignatureData(
+            SignatureData(
                 Numeric.hexStringToByteArray(v)[0],
                 Numeric.hexStringToByteArray(r),
                 Numeric.hexStringToByteArray(s)

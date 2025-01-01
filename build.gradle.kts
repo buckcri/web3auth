@@ -1,4 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
 	id("org.springframework.boot") version "3.4.1"
@@ -28,10 +29,10 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
-	implementation("org.web3j:core:4.9.0")
-	implementation("org.web3j:crypto:4.9.0")
+	implementation("org.web3j:core:4.12.3")
+	implementation("org.web3j:crypto:4.12.3")
 
-	implementation("com.nimbusds:nimbus-jose-jwt:9.41.2")
+	implementation("com.nimbusds:nimbus-jose-jwt:9.48")
 
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
 
@@ -39,10 +40,10 @@ dependencies {
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:2.1.0")
 }
 
-tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "17"
+tasks.withType<KotlinJvmCompile>().configureEach {
+	compilerOptions {
+		jvmTarget.set(JvmTarget.JVM_17)
+		freeCompilerArgs.add("-Xjsr305=strict")
 	}
 }
 

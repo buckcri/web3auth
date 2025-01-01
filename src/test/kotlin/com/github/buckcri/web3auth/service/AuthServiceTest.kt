@@ -36,11 +36,10 @@ class AuthServiceTest(@Autowired val authService: AuthService) {
 	companion object {
 		// The following are fixed records of a valid challenge-response-flow to be used in these unit tests:
 		private const val TEST_ADDRESS = "0xab5783935e2b9c8f3e3ee0751a60693bb7451b76"
-		private const val TEST_NONCE = "f70ebe3e-e55b-4766-bd00-34078b9e5721"
-		/** sha3 of TEST_NONCE. Not used here, but given for completeness of test data. */
-		//private const val TEST_MESSAGE = "0xc582fc7819e8c7dca92b7bd5befc0ec414518aa90fadff75eded7a5b55f8dadb"
+		private const val TEST_NONCE = "7d78fd71-d2f9-4016-adb7-27a86b388d13"
+		// TEST_MESSAGE: 0x0311be529d706f64bd182213e3ba48878453c3b6967a4b9aba3196f9def4cb03
 		/** Signature for TEST_MESSAGE and TEST_ADDRESS */
-		private const val TEST_SIGNED_MESSAGE = "0x873e6d413d9f4819a28193b34ba5e914d805caab84a623e92d43837c2af63b732a1b37d9ae70700d5899ae0fe67be59bb55d933805ff30962f0c4e37ff6ebb2d1b"
+		private const val TEST_SIGNED_MESSAGE = "0x553ea784390374a50b6d28fa3b957053ce7ed8b2968c251ad41ecfd4ed2e7928406328ffc72977421d4b7e8df7846d3a1db3128c2df657d897ec2a3d01cc33ae1c"
 	}
 
 	@Test
