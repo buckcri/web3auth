@@ -2,9 +2,7 @@ package com.github.buckcri.web3auth.service
 
 import com.github.buckcri.web3auth.model.ChallengeModel
 import com.github.buckcri.web3auth.model.ResponseModel
-import jdk.internal.joptsimple.internal.Messages.message
 import org.springframework.stereotype.Service
-import org.web3j.crypto.ECDSASignature
 import org.web3j.crypto.Hash
 import org.web3j.crypto.Keys
 import org.web3j.crypto.Sign
@@ -12,7 +10,6 @@ import org.web3j.crypto.Sign.SignatureData
 import org.web3j.utils.Numeric
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
-import kotlin.reflect.jvm.internal.impl.load.kotlin.MethodSignatureBuildingUtilsKt.signature
 
 
 @Service
