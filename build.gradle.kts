@@ -30,8 +30,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
-	implementation("org.web3j:core:4.9.0")
-	implementation("org.web3j:crypto:4.9.0")
+	implementation("org.web3j:core:4.12.3")
+	implementation("org.web3j:crypto:4.12.3")
 
 	implementation("com.nimbusds:nimbus-jose-jwt:9.48")
 
