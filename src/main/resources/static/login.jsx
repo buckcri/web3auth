@@ -49,10 +49,10 @@ class Web3Auth extends React.Component {
       /* see https://github.com/MetaMask/providers/issues/199 for reason behind signing the hashed nonce instead of nonce itself */
       window.ethereum
         .request({
-          method: "eth_sign",
+          method: "personal_sign",
           params: [
+            window.web3.utils.toHex(window.web3.utils.sha3(this.state.challenge.nonce)),
             this.state.account,
-            window.web3.utils.sha3(this.state.challenge.nonce),
           ],
         })
         .then((signature) => {
