@@ -2,11 +2,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
-	id("org.springframework.boot") version "3.4.1"
+	id("org.springframework.boot") version "3.4.2"
 	id("io.spring.dependency-management") version "1.1.7"
-	kotlin("jvm") version "2.1.0"
-	kotlin("plugin.spring") version "2.1.0"
-	kotlin("plugin.serialization") version "2.1.0"
+	kotlin("jvm") version "2.1.10"
+	kotlin("plugin.spring") version "2.1.10"
+	kotlin("plugin.serialization") version "2.1.10"
 }
 
 group = "com.github.buckcri.web3auth"
@@ -27,17 +27,17 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
-	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 
 	implementation("org.web3j:core:4.12.3")
 	implementation("org.web3j:crypto:4.12.3")
 
-	implementation("com.nimbusds:nimbus-jose-jwt:9.48")
+	implementation("com.nimbusds:nimbus-jose-jwt:10.0.1")
 
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:2.1.0")
+	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:2.1.10")
 }
 
 tasks.withType<KotlinJvmCompile>().configureEach {
