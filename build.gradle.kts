@@ -32,7 +32,7 @@ dependencies {
 	implementation("org.web3j:core:4.12.3")
 	implementation("org.web3j:crypto:4.12.3")
 
-	implementation("com.nimbusds:nimbus-jose-jwt:10.0.2")
+	implementation("com.nimbusds:nimbus-jose-jwt:10.3")
 
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8")
 
