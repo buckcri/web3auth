@@ -34,7 +34,7 @@ dependencies {
 
 	implementation("com.nimbusds:nimbus-jose-jwt:10.3.1")
 
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:2.1.21")
