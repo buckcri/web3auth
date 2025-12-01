@@ -29,8 +29,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 
-	implementation("org.web3j:core:4.12.3")
-	implementation("org.web3j:crypto:4.12.3")
+	implementation("org.web3j:core:5.0.1")
+	implementation("org.web3j:crypto:5.0.1")
 
 	implementation("com.nimbusds:nimbus-jose-jwt:10.4.2")
 
