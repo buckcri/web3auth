@@ -37,7 +37,7 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:2.2.21")
+	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:2.3.0")
 }
 
 tasks.withType<KotlinJvmCompile>().configureEach {
